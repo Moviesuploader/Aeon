@@ -11,8 +11,8 @@ class TelegraphHelper:
         self.telegraph = Telegraph(domain='graph.org')
         self.short_name = token_hex(4)
         self.access_token = None
-        self.author_name = 'Aeon'
-        self.author_url = 'https://t.me/ProjectAeon'
+        self.author_name = '𝘽𝙏𝙈𝙓'
+        self.author_url = 'https://t.me/beautyofthemoviesx'
 
     async def create_account(self):
         await self.telegraph.create_account(
