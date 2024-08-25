@@ -248,7 +248,7 @@ def source(self):
 
 
 def get_readable_message():
-    msg = "<b>⚡️𝙋𝙊𝙒𝙀𝙍𝙀𝘿 𝘽𝙔 : <a href="https://t.me/btmx_zone">𝘽𝙏𝙈𝙓_𝙕𝙊𝙉𝙀🛐</a></b>\n\n'"
+    msg = '<b>⚡️𝙋𝙊𝙒𝙀𝙍𝙀𝘿 𝘽𝙔 : <a href="https://t.me/btmx_zone">𝘽𝙏𝙈𝙓_𝙕𝙊𝙉𝙀🛐</a></b>\n\n'
     button = None
     tasks = len(download_dict)
     currentTime = get_readable_time(time() - botStartTime)
