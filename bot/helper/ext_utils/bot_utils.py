@@ -234,8 +234,8 @@ def progress_bar(pct):
         pct = float(pct.strip("%"))
     p = min(max(pct, 0), 100)
     cFull = int((p + 5) // 10)
-    p_str = "●" * cFull
-    p_str += "○" * (10 - cFull)
+    p_str = "▰" * cFull
+    p_str += "▱" * (10 - cFull)
     return p_str
 
 
@@ -248,7 +248,7 @@ def source(self):
 
 
 def get_readable_message():
-    msg = "<b>⚡️𝙋𝙊𝙒𝙀𝙍𝙀𝘿 𝘽𝙔 : @𝘽𝙏𝙈𝙓_𝙕𝙊𝙉𝙀🛐</b>\n\n"
+    msg = "<b>⚡️𝙋𝙊𝙒𝙀𝙍𝙀𝘿 𝘽𝙔 : <a href="https://t.me/btmx_zone">𝘽𝙏𝙈𝙓_𝙕𝙊𝙉𝙀🛐</a></b>\n\n'"
     button = None
     tasks = len(download_dict)
     currentTime = get_readable_time(time() - botStartTime)
