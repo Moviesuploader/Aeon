@@ -109,18 +109,18 @@ STATUS_LIMIT = 4
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Uploading"
-    STATUS_DOWNLOADING = "Downloading"
-    STATUS_CLONING = "Cloning"
-    STATUS_QUEUEDL = "DL queued"
-    STATUS_QUEUEUP = "UL queued"
-    STATUS_PAUSED = "Paused"
-    STATUS_ARCHIVING = "Archiving"
-    STATUS_EXTRACTING = "Extracting"
-    STATUS_SPLITTING = "Splitting"
-    STATUS_CHECKING = "CheckUp"
-    STATUS_SEEDING = "Seeding"
-    STATUS_PROCESSING = "Processing"
+    STATUS_UPLOADING = "📤Uploading"
+    STATUS_DOWNLOADING = "📥Downloading"
+    STATUS_CLONING = "♋️Cloning"
+    STATUS_QUEUEDL = "🔜DL queued"
+    STATUS_QUEUEUP = "🔜UL queued"
+    STATUS_PAUSED = "▶️Paused"
+    STATUS_ARCHIVING = "🔒Archiving"
+    STATUS_EXTRACTING = "🔐Extracting"
+    STATUS_SPLITTING = "✂️Splitting"
+    STATUS_CHECKING = "✔️CheckUp"
+    STATUS_SEEDING = "🌱Seeding"
+    STATUS_PROCESSING = "♻️Processing"
 
 
 class SetInterval:
@@ -234,8 +234,8 @@ def progress_bar(pct):
         pct = float(pct.strip("%"))
     p = min(max(pct, 0), 100)
     c_full = int((p + 5) // 10)
-    p_str = "●" * c_full
-    p_str += "○" * (10 - c_full)
+    p_str = "▰" * c_full
+    p_str += "▱" * (10 - c_full)
     return p_str
 
 
@@ -248,7 +248,7 @@ def source(self):
 
 
 def get_readable_message():
-    msg = "<b>Powered by Aeon</b>\n\n"
+    msg = "<b>⚡️𝙋𝙊𝙒𝙀𝙍𝙀𝘿 𝘽𝙔: <a href="https://telegram.me/btmx_zone">𝘽𝙏𝙈𝙓 🔱 </a></b>\n<b>
     button = None
     tasks = len(download_dict)
     current_time = get_readable_time(time() - bot_start_time)
@@ -263,8 +263,8 @@ def get_readable_message():
     for download in list(download_dict.values())[
         STATUS_START : STATUS_LIMIT + STATUS_START
     ]:
-        msg += f"<b>{download.status()}:</b> {escape(f'{download.name()}')}\n"
-        msg += f"by {source(download)}\n"
+        msg += f"<b>🏷{download.status()}:</b> {escape(f'{download.name()}')}\n"
+        msg += f"👉by {source(download)}\n"
         if download.status() not in [
             MirrorStatus.STATUS_SPLITTING,
             MirrorStatus.STATUS_SEEDING,
@@ -272,21 +272,21 @@ def get_readable_message():
         ]:
             msg += f"<blockquote><code>{progress_bar(download.progress())}</code> {download.progress()}"
             msg += f"\n{download.processed_bytes()} of {download.size()}"
-            msg += f"\nSpeed: {download.speed()}"
-            msg += f"\nEstimated: {download.eta()}"
+            msg += f"\n🚀Speed: {download.speed()}"
+            msg += f"\n⏲️Estimated: {download.eta()}"
             if hasattr(download, "seeders_num"):
                 with contextlib.suppress(Exception):
-                    msg += f"\nSeeders: {download.seeders_num()} | Leechers: {download.leechers_num()}"
+                    msg += f"\n🌱Seeders: {download.seeders_num()} | ♌️Leechers: {download.leechers_num()}"
         elif download.status() == MirrorStatus.STATUS_SEEDING:
-            msg += f"<blockquote>Size: {download.size()}"
-            msg += f"\nSpeed: {download.upload_speed()}"
-            msg += f"\nUploaded: {download.uploaded_bytes()}"
+            msg += f"<blockquote>📁Size: {download.size()}"
+            msg += f"\n🚀Speed: {download.upload_speed()}"
+            msg += f"\n📥Uploaded: {download.uploaded_bytes()}"
             msg += f"\nRatio: {download.ratio()}"
-            msg += f"\nTime: {download.seeding_time()}"
+            msg += f"\n⏰️Time: {download.seeding_time()}"
         else:
-            msg += f"<blockquote>Size: {download.size()}"
-        msg += f"\nElapsed: {get_readable_time(time() - download.message.date.timestamp())}</blockquote>"
-        msg += f"\n<blockquote>/stop_{download.gid()[:8]}</blockquote>\n\n"
+            msg += f"<blockquote>📁Size: {download.size()}"
+        msg += f"\n⏳️Elapsed: {get_readable_time(time() - download.message.date.timestamp())}</blockquote>"
+        msg += f"\n❌️<blockquote>/stop_{download.gid()[:8]}</blockquote>\n\n"
     if len(msg) == 0:
         return None, None
     if tasks > STATUS_LIMIT:
@@ -295,9 +295,9 @@ def get_readable_message():
         buttons.callback(f"{PAGE_NO}/{PAGES}", "status ref")
         buttons.callback("Next", "status nex")
         button = buttons.column(3)
-    msg += f"<b>• Tasks</b>: {tasks}{bmax_task}"
-    msg += f"\n<b>• Bot uptime</b>: {current_time}"
-    msg += f"\n<b>• Free disk space</b>: {get_readable_file_size(disk_usage('/usr/src/app/downloads/').free)}"
+    msg += f"<b>•📋 Tasks</b>: {tasks}{bmax_task}"
+    msg += f"\n<b>•⏰️ Bot uptime</b>: {current_time}"
+    msg += f"\n<b>•💽 Free disk space</b>: {get_readable_file_size(disk_usage('/usr/src/app/downloads/').free)}"
     return msg, button
 
 
