@@ -248,7 +248,7 @@ def source(self):
 
 
 def get_readable_message():
-    msg = "<b>⚡️𝙋𝙊𝙒𝙀𝙍𝙀𝘿 𝘽𝙔: <a href="https://telegram.me/btmx_zone">𝘽𝙏𝙈𝙓 🔱 </a></b>
+    msg = "<b>⚡️𝙋𝙊𝙒𝙀𝙍𝙀𝘿 𝘽𝙔: <a href="https://telegram.me/btmx_zone">𝘽𝙏𝙈𝙓🔱</a></b>
     button = None
     tasks = len(download_dict)
     current_time = get_readable_time(time() - bot_start_time)
